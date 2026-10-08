@@ -1,0 +1,323 @@
+{
+  "experiment": "E3.1",
+  "name": "PetClinic-Grounded RASE Architecture",
+  "generated_at_utc": "2026-10-06T12:05:10.142060+00:00",
+  "repository": "C:\\Users\\Dr. AR\\RASE\\spring-petclinic-modulith",
+  "java_source_file_count": 57,
+  "scope_note": "Source-derived architecture candidates. This extraction does not execute PetClinic or prove runtime behavior. Relationships require source review and, where applicable, runtime confirmation.",
+  "checks": {
+    "VisitBooked_event_found": true,
+    "VetEventListener_found": true,
+    "VetRoster_found": true,
+    "assignVet_method_found": true,
+    "event_publication_reference_found": true
+  },
+  "components": [
+    {
+      "id": "OWNER",
+      "name": "Owner / VisitScheduler",
+      "role": "Visit event publication",
+      "source_candidates": [
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b",
+            "\\bpublishEvent\\s*\\(",
+            "\\bApplicationEventPublisher\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\VisitBooked.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitSchedulerTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VISIT_BOOKED",
+      "name": "VisitBooked",
+      "role": "Domain event",
+      "source_candidates": [
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\VisitBooked.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitSchedulerTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VET_LISTENER",
+      "name": "VetEventListener",
+      "role": "Event consumption",
+      "source_candidates": [
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\VisitBooked.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b",
+            "\\bEventListener\\b",
+            "\\bApplicationModuleListener\\b"
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitSchedulerTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        },
+        {
+          "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+          "matched_patterns": [
+            "\\bVisitBooked\\b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VET_ROSTER",
+      "name": "VetRoster",
+      "role": "Vet assignment",
+      "source_candidates": [
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+          "matched_patterns": [
+            "\\bVetRoster\\b",
+            "\\bassignVet\\s*\\("
+          ]
+        },
+        {
+          "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+          "matched_patterns": [
+            "\\bVetRoster\\b",
+            "\\bassignVet\\s*\\("
+          ]
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source": "OWNER",
+      "target": "VISIT_BOOKED",
+      "relation_type": "produces-event",
+      "verification_status": "inspect_source_evidence"
+    },
+    {
+      "source": "VISIT_BOOKED",
+      "target": "VET_LISTENER",
+      "relation_type": "consumes-event",
+      "verification_status": "inspect_source_evidence"
+    },
+    {
+      "source": "VET_LISTENER",
+      "target": "VET_ROSTER",
+      "relation_type": "delegates-to",
+      "verification_status": "inspect_source_evidence"
+    }
+  ],
+  "source_evidence": [
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+      "line_number": 19,
+      "source_line": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+      "line_number": 29,
+      "source_line": "* After persistence, it publishes a {@link VisitBooked} event so other modules can react"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+      "line_number": 49,
+      "source_line": "eventPublisher.publishEvent(new VisitBooked(visit.getId(), petId, visit.getDate()));"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\VisitBooked.java",
+      "line_number": 25,
+      "source_line": "public record VisitBooked(int visitId, int petId, LocalDate date) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 18,
+      "source_line": "import org.springframework.context.event.EventListener;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 19,
+      "source_line": "import org.springframework.modulith.events.ApplicationModuleListener;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 21,
+      "source_line": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 29,
+      "source_line": "* {@code vet} module. Communication happens only through the {@link VisitBooked} event,"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 33,
+      "source_line": "class VetEventListener {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 35,
+      "source_line": "private final VetRoster vetRoster;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 37,
+      "source_line": "VetEventListener(VetRoster vetRoster) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 41,
+      "source_line": "@ApplicationModuleListener"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 42,
+      "source_line": "void on(VisitBooked event) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 43,
+      "source_line": "vetRoster.assignVet(event);"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line_number": 46,
+      "source_line": "@EventListener"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 23,
+      "source_line": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 31,
+      "source_line": "* When a {@link VisitBooked} event is received, this roster picks the least-loaded"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 41,
+      "source_line": "class VetRoster {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 43,
+      "source_line": "private static final Logger log = LoggerFactory.getLogger(VetRoster.class);"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 49,
+      "source_line": "VetRoster(VetRepository vets, VisitAssignmentRepository visitAssignments) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 58,
+      "source_line": "* @param event the published {@link VisitBooked} event"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line_number": 62,
+      "source_line": "void assignVet(VisitBooked event) {"
+    },
+    {
+      "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitSchedulerTests.java",
+      "line_number": 22,
+      "source_line": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitSchedulerTests.java",
+      "line_number": 58,
+      "source_line": ".andWaitForEventOfType(VisitBooked.class)"
+    },
+    {
+      "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+      "line_number": 24,
+      "source_line": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+      "line_number": 42,
+      "source_line": "scenario.publish(new VisitBooked(visitId, petId, visitDate))"
+    }
+  ]
+}

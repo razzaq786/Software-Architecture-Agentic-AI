@@ -1,0 +1,7 @@
+system,uncertainty_cases,correct_deferral_rate,unsafe_commit_rate,uncertainty_handling_accuracy,avg_assurance,avg_replacement_assurance,avg_reconfiguration
+B1_STATIC,5,0.0,0.0,0.0,,,0.0
+B2_DYNAMIC,5,0.0,1.0,0.0,,,2.0
+B3_UNTYPED,5,0.0,1.0,0.0,,,2.0
+B4_RASE_NO_EAS,5,0.0,1.0,0.0,,0.4999990902443255,2.0
+B5_RASE,5,1.0,0.0,1.0,0.3336588671556555,0.7499983006359655,0.0
+B6_MAPEK,5,0.0,1.0,0.0,,,2.0

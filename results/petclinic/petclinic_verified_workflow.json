@@ -1,0 +1,106 @@
+{
+  "case_study": "Spring PetClinic Modulith",
+  "verification": "E3.1b",
+  "workflow": [
+    "VisitScheduler publishes VisitBooked",
+    "VetEventListener consumes VisitBooked",
+    "VetEventListener delegates assignment",
+    "VetRoster performs vet assignment"
+  ],
+  "checks": {
+    "event_exists": true,
+    "publisher_found": true,
+    "listener_found": true,
+    "listener_references_event": true,
+    "roster_found": true,
+    "assign_vet_found": true
+  },
+  "publisher_evidence": [
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\owner\\application\\VisitScheduler.java",
+      "line": 49,
+      "text": "eventPublisher.publishEvent(new VisitBooked(visit.getId(), petId, visit.getDate()));"
+    },
+    {
+      "file": "src\\test\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetAssignmentTests.java",
+      "line": 42,
+      "text": "scenario.publish(new VisitBooked(visitId, petId, visitDate))"
+    }
+  ],
+  "listener_evidence": [
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 18,
+      "text": "import org.springframework.context.event.EventListener;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 19,
+      "text": "import org.springframework.modulith.events.ApplicationModuleListener;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 21,
+      "text": "import org.springframework.samples.petclinic.owner.VisitBooked;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 29,
+      "text": "* {@code vet} module. Communication happens only through the {@link VisitBooked} event,"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 41,
+      "text": "@ApplicationModuleListener"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 42,
+      "text": "void on(VisitBooked event) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 46,
+      "text": "@EventListener"
+    }
+  ],
+  "roster_evidence": [
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 35,
+      "text": "private final VetRoster vetRoster;"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 37,
+      "text": "VetEventListener(VetRoster vetRoster) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetEventListener.java",
+      "line": 43,
+      "text": "vetRoster.assignVet(event);"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line": 41,
+      "text": "class VetRoster {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line": 43,
+      "text": "private static final Logger log = LoggerFactory.getLogger(VetRoster.class);"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line": 49,
+      "text": "VetRoster(VetRepository vets, VisitAssignmentRepository visitAssignments) {"
+    },
+    {
+      "file": "src\\main\\java\\org\\springframework\\samples\\petclinic\\vet\\internal\\VetRoster.java",
+      "line": 62,
+      "text": "void assignVet(VisitBooked event) {"
+    }
+  ],
+  "verified": true,
+  "ground_truth_status": "VERIFIED"
+}

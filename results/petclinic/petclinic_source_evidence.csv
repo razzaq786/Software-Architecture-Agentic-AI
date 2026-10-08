@@ -1,0 +1,27 @@
+file,line_number,source_line
+src\main\java\org\springframework\samples\petclinic\owner\application\VisitScheduler.java,19,import org.springframework.samples.petclinic.owner.VisitBooked;
+src\main\java\org\springframework\samples\petclinic\owner\application\VisitScheduler.java,29,"* After persistence, it publishes a {@link VisitBooked} event so other modules can react"
+src\main\java\org\springframework\samples\petclinic\owner\application\VisitScheduler.java,49,"eventPublisher.publishEvent(new VisitBooked(visit.getId(), petId, visit.getDate()));"
+src\main\java\org\springframework\samples\petclinic\owner\VisitBooked.java,25,"public record VisitBooked(int visitId, int petId, LocalDate date) {"
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,18,import org.springframework.context.event.EventListener;
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,19,import org.springframework.modulith.events.ApplicationModuleListener;
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,21,import org.springframework.samples.petclinic.owner.VisitBooked;
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,29,"* {@code vet} module. Communication happens only through the {@link VisitBooked} event,"
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,33,class VetEventListener {
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,35,private final VetRoster vetRoster;
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,37,VetEventListener(VetRoster vetRoster) {
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,41,@ApplicationModuleListener
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,42,void on(VisitBooked event) {
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,43,vetRoster.assignVet(event);
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetEventListener.java,46,@EventListener
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,23,import org.springframework.samples.petclinic.owner.VisitBooked;
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,31,"* When a {@link VisitBooked} event is received, this roster picks the least-loaded"
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,41,class VetRoster {
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,43,private static final Logger log = LoggerFactory.getLogger(VetRoster.class);
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,49,"VetRoster(VetRepository vets, VisitAssignmentRepository visitAssignments) {"
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,58,* @param event the published {@link VisitBooked} event
+src\main\java\org\springframework\samples\petclinic\vet\internal\VetRoster.java,62,void assignVet(VisitBooked event) {
+src\test\java\org\springframework\samples\petclinic\owner\application\VisitSchedulerTests.java,22,import org.springframework.samples.petclinic.owner.VisitBooked;
+src\test\java\org\springframework\samples\petclinic\owner\application\VisitSchedulerTests.java,58,.andWaitForEventOfType(VisitBooked.class)
+src\test\java\org\springframework\samples\petclinic\vet\internal\VetAssignmentTests.java,24,import org.springframework.samples.petclinic.owner.VisitBooked;
+src\test\java\org\springframework\samples\petclinic\vet\internal\VetAssignmentTests.java,42,"scenario.publish(new VisitBooked(visitId, petId, visitDate))"

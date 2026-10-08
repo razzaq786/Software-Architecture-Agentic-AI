@@ -1,0 +1,5 @@
+scenario,decision_accuracy,impact_accuracy,adaptation_attempt_rate,verification_attempt_rate,verification_success_rate,rollback_rate,avg_reconfiguration,premature_adaptation_rate
+E3-S0_NORMAL,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0
+E3-S1_TRUSTED_REPLACEMENT,1.0,1.0,1.0,1.0,1.0,0.0,2.0,0.0
+E3-S2_UNCERTAIN_REPLACEMENT,1.0,1.0,0.0,0.0,,0.0,0.0,0.0
+E3-S3_DEGRADED_REPLACEMENT,1.0,1.0,0.0,0.0,,0.0,0.0,0.0

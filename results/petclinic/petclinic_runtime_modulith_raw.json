@@ -1,0 +1,36 @@
+{
+  "owner": {
+    "displayName": "Owner",
+    "basePackage": "org.springframework.samples.petclinic.owner",
+    "nested": [],
+    "type": "closed",
+    "shared": false,
+    "dependencies": []
+  },
+  "system": {
+    "displayName": "System",
+    "basePackage": "org.springframework.samples.petclinic.system",
+    "nested": [],
+    "type": "closed",
+    "shared": false,
+    "dependencies": []
+  },
+  "vet": {
+    "displayName": "Vet",
+    "basePackage": "org.springframework.samples.petclinic.vet",
+    "nested": [],
+    "type": "closed",
+    "shared": false,
+    "allowedDependencies": [
+      "owner"
+    ],
+    "dependencies": [
+      {
+        "types": [
+          "EVENT_LISTENER"
+        ],
+        "target": "owner"
+      }
+    ]
+  }
+}
